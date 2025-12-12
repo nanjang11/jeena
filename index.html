@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>트렌드 리서치 노트</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif; margin: 0; padding: 24px; background: #fafafa; }
+    .container { max-width: 900px; margin: 0 auto; }
+    .card { background: white; border: 1px solid #eee; border-radius: 18px; padding: 18px; box-shadow: 0 6px 20px rgba(0,0,0,0.04); }
+    .title { font-size: 28px; margin: 0; }
+    .sub { color: #666; margin-top: 8px; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 14px; }
+    @media (max-width: 820px){ .grid { grid-template-columns: 1fr; } }
+
+    .btn{
+      border: 1px solid #ddd;
+      background: white;
+      padding: 8px 10px;
+      border-radius: 12px;
+      cursor: pointer;
+      margin-right: 6px;
+    }
+    .btn:hover{ background:#f3f3f3; }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="card">
+      <h1 class="title">트렌드 리서치 노트</h1>
+      <p class="sub">캐릭터/IP · 굿즈 · 팝업 · 리테일</p>
+
+      <div style="margin-top:12px;">
+        <button class="btn" data-filter="all">전체</button>
+        <button class="btn" data-filter="seongsu">성수</button>
+        <button class="btn" data-filter="hongdae">홍대</button>
+        <button class="btn" data-filter="jamsil">잠실</button>
+      </div>
+    </div>
+
+    <div class="grid" style="margin-top:14px;">
+      <div class="card popup" data-area="seongsu">
+        <h3>스누피 팝업</h3>
+        <p class="sub">지역: 성수</p>
+      </div>
+      <div class="card popup" data-area="hongdae">
+        <h3>캐릭터 굿즈 마켓</h3>
+        <p class="sub">지역: 홍대</p>
+      </div>
+      <div class="card popup" data-area="jamsil">
+        <h3>콜라보 전시 팝업</h3>
+        <p class="sub">지역: 잠실</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const buttons = document.querySelectorAll(".btn");
+    const cards = document.querySelectorAll(".popup");
+
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const filter = btn.dataset.filter;
+
+        cards.forEach(card => {
+          const area = card.dataset.area;
+          const show = (filter === "all") || (area === filter);
+          card.style.display = show ? "block" : "none";
+        });
+      });
+    });
+  </script>
+</body>
+</html>
